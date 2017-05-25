@@ -7,8 +7,7 @@ public class ViewInConsole
 {
   static String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X" };
   
-  static String[] viewBoard()
-  {
+  static String[] viewBoard() {
     String[] inputFromUser = new String[24];
     Scanner scan = new Scanner(System.in);
     int rows = 2;
@@ -39,8 +38,7 @@ public class ViewInConsole
     System.out.print("\n              |   O  |   P  |");
     System.out.print("\n              |______|______|");
     System.out.println();
-    for (int i = 0; i < 24; i++)
-    {
+    for (int i = 0; i < 24; i++) {
       System.out.println("Введите " + alphabet[i] + ": ");
       inputFromUser[i] = scan.next();
     }

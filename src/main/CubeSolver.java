@@ -12,25 +12,21 @@ public class CubeSolver
   private static String moveList = "";
   private static String[] humanStep = { "F", "F'", "B", "B'", "R", "R'", "L", "L'", "U", "U'", "D", "D'" };
   
-  public static void main(String[] args)
-  {
+  public static void main(String[] args) {
+    //Считываем весь куб
     Scanner scan = new Scanner(System.in);
     char[] input = new char[24];
     System.out.println("Для ввода комбинации с кубика введите 1, если у вас есть готовая комбинация нажмите 2: ");
     int a = scan.nextInt();
-    if (a == 1)
-    {
+    if (a == 1) {
       String[] g = new String[24];
       g = ViewInConsole.viewBoard();
-      for (int x = 0; x < 24; x++)
-      {
+      for (int x = 0; x < 24; x++) {
         String p = g[x];
         input[x] = p.charAt(0);
       }
       initRibs(input);
-    }
-    else if (a == 2)
-    {
+    } else if (a == 2) {
       System.out.println("Введите готовую комбинацию: ");
       for (int x = 0; x < 24; x++) {
         input[x] = scan.next().charAt(0);
@@ -40,23 +36,23 @@ public class CubeSolver
     scan.close();
     
     long startTime = System.nanoTime();
-    
+
+    //Начало сборки
     String[] turns = moves(14);
-    for (String turn : turns)
-    {
+    for (String turn : turns) {
       moveList += turn;
       moveList += " ";
       moveCount += 1;
     }
-    long stopTime = (System.nanoTime() - startTime) / 1000000L;
+    long stopTime = (System.nanoTime() - startTime) / 1000;
     
     System.out.println(moveList);
-    System.out.format("Нужно шагов: %d\n", new Object[] { Integer.valueOf(moveCount) });
-    System.out.println(stopTime + " минисекунд");
+    System.out.format("Нужно шагов: %d\n", + moveCount);
+    System.out.println(stopTime + " микросекунд");
   }
-  
-  private static void initRibs(char[] input)
-  {
+
+  //Иницилизируем рёбра
+  private static void initRibs(char[] input) {
     char[][] ribs = new char[8][3];
     
     ribs[0] = new char[]{input[0], input[16], input[14]};
@@ -67,10 +63,19 @@ public class CubeSolver
     ribs[5] = new char[]{input[11], input[23], input[13]};
     ribs[6] = new char[]{input[8], input[19], input[6]};
     ribs[7] = new char[]{input[9], input[7], input[22]};
-    
-    char[][] seachRibsPosition = { { 'y', 'r', 'b' }, { 'r', 'b', 'y' }, { 'b', 'y', 'r' }, { 'y', 'b', 'o' }, { 'b', 'o', 'y' }, { 'o', 'y', 'b' }, { 'y', 'g', 'r' }, { 'g', 'r', 'y' }, { 'r', 'y', 'g' }, { 'y', 'o', 'g' }, { 'o', 'g', 'y' }, { 'g', 'y', 'o' }, { 'w', 'b', 'r' }, { 'b', 'r', 'w' }, { 'r', 'w', 'b' }, { 'w', 'o', 'b' }, { 'o', 'b', 'w' }, { 'b', 'w', 'o' }, { 'w', 'r', 'g' }, { 'r', 'g', 'w' }, { 'g', 'w', 'r' }, { 'w', 'g', 'o' }, { 'g', 'o', 'w' }, { 'o', 'w', 'g' } };
-    for (int x = 0; x < 8; x++)
-    {
+
+    //Определяем навравление цветов
+    char[][] seachRibsPosition = {
+            { 'y', 'r', 'b' }, { 'r', 'b', 'y' }, { 'b', 'y', 'r' },
+            { 'y', 'b', 'o' }, { 'b', 'o', 'y' }, { 'o', 'y', 'b' },
+            { 'y', 'g', 'r' }, { 'g', 'r', 'y' }, { 'r', 'y', 'g' },
+            { 'y', 'o', 'g' }, { 'o', 'g', 'y' }, { 'g', 'y', 'o' },
+            { 'w', 'b', 'r' }, { 'b', 'r', 'w' }, { 'r', 'w', 'b' },
+            { 'w', 'o', 'b' }, { 'o', 'b', 'w' }, { 'b', 'w', 'o' },
+            { 'w', 'r', 'g' }, { 'r', 'g', 'w' }, { 'g', 'w', 'r' },
+            { 'w', 'g', 'o' }, { 'g', 'o', 'w' }, { 'o', 'w', 'g' }
+    };
+    for (int x = 0; x < 8; x++) {
       int index = 0;
       while (!Arrays.equals(ribs[x], seachRibsPosition[index])) {
         index++;
@@ -80,8 +85,7 @@ public class CubeSolver
     }
   }
   
-  private static String[] moves(int depth)
-  {
+  private static String[] moves(int depth) {
     String[] humanSolve = { "" };
     int[] startPosition = new int[8];
     int[] startRotation = new int[8];
@@ -92,14 +96,13 @@ public class CubeSolver
     for (int s = 0; s < depth; s++) {
       sits = sits + "5";
     }
-    for (long i = 0L; i <= Long.parseLong(sits, 6); i += 1L)
-    {
+    //Поиск в ширину нужно комбинации
+    for (long i = 0; i<=Long.parseLong(sits, 6); ++i) {
       positionRibs = startPosition;
       rotationRibs = startRotation;
       String movestring = Long.toString(i, 12);
       String[] moves = new String[movestring.length()];
-      for (int d = 0; d < movestring.length(); d++)
-      {
+      for (int d = 0; d < movestring.length(); d++) {
         String move = "";
         if (movestring.substring(d, d + 1).equals("0")) {
           move = humanStep[0];
@@ -147,11 +150,9 @@ public class CubeSolver
     return humanSolve;
   }
   
-  private static void rotateSide(String[] moves)
-  {
-    for (String face : moves) {
-      switch (face)
-      {
+  private static void rotateSide(String[] moves){     //Принимает массив, с помощью которого крутит грани
+    for (String face : moves) {                      //Каждая буква это поворот грани. Например, F - поворот фасада по часовой, F' - против часовой
+      switch (face) {
       case "F": 
         positionRibs = new int[] { positionRibs[0], positionRibs[1], positionRibs[6], positionRibs[2], positionRibs[4], positionRibs[5], positionRibs[7], positionRibs[3] };
         rotationRibs = new int[] { rotationRibs[0], rotationRibs[1], (rotationRibs[6] + 1) % 3, (rotationRibs[2] + 2) % 3, rotationRibs[4], rotationRibs[5], (rotationRibs[7] + 2) % 3, (rotationRibs[3] + 1) % 3 };
@@ -203,20 +204,17 @@ public class CubeSolver
     }
   }
   
-  public static String getElementsInArray(String[] testInput)
-  {
+  public static String getCheck(String[] testInput) {
     moveList = "";
     char[] input = new char[24];
     String p;
-    for (int i = 0; i < 24; i++)
-    {
+    for (int i = 0; i < 24; i++) {
       p = testInput[i];
       input[i] = p.charAt(0);
     }
     initRibs(input);
     String[] turns = moves(14);
-    for (String turn : turns)
-    {
+    for (String turn : turns) {
       moveList += turn;
       moveList += " ";
     }
