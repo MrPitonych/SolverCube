@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class SolverTest {
+
   String[] checkB = { "r", "r", "y", "y", "g", "g", "g", "g", "w", "w", "o", "o", "b", "b", "b", "b", "w", "r", "w", "r", "o", "y", "o", "y" };
   String[] checkF = { "y", "y", "r", "r", "g", "g", "g", "g", "o", "o", "w", "w", "b", "b", "b", "b", "r", "w", "r", "w", "y", "o", "y", "o" };
   String[] checkL = { "b", "y", "b", "y", "y", "g", "y", "g", "g", "w", "g", "w", "w", "b", "w", "b", "r", "r", "r", "r", "o", "o", "o", "o" };

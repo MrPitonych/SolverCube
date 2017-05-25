@@ -3,8 +3,7 @@ package main;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class ViewInConsole
-{
+public class ViewInConsole {
   static String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X" };
   
   static String[] viewBoard() {
