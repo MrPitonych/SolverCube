@@ -4,8 +4,7 @@ import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class CubeSolver
-{
+public class CubeSolver {
   private static int[] positionRibs = new int[8];
   private static int[] rotationRibs = new int[8];
   private static int moveCount = 0;
