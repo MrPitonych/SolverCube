@@ -37,6 +37,20 @@ public class ViewInConsole {
     System.out.print("\n              |   O  |   P  |");
     System.out.print("\n              |______|______|");
     System.out.println();
+
+    //yellow-1
+    //green-2
+    //white-3
+    //blue-4
+    //red-5
+    //orange-6
+    System.out.println("Водите цифры соответствующие цвету:" +
+            "\nЖёлтый - 1, " +
+            "Зелёный - 2, " +
+            "Белый - 3, " +
+            "Синий - 4, " +
+            "Красный - 5, " +
+            "Оранжевый - 6");
     for (int i = 0; i < 24; i++) {
       System.out.println("Введите " + alphabet[i] + ": ");
       inputFromUser[i] = scan.next();

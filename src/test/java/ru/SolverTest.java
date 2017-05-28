@@ -1,28 +1,23 @@
 package test.java.ru;
 
-import main.CubeSolver;
+
+import main.CubeSolverForTest;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class SolverTest {
 
-  String[] checkB = { "r", "r", "y", "y", "g", "g", "g", "g", "w", "w", "o", "o", "b", "b", "b", "b", "w", "r", "w", "r", "o", "y", "o", "y" };
-  String[] checkF = { "y", "y", "r", "r", "g", "g", "g", "g", "o", "o", "w", "w", "b", "b", "b", "b", "r", "w", "r", "w", "y", "o", "y", "o" };
-  String[] checkL = { "b", "y", "b", "y", "y", "g", "y", "g", "g", "w", "g", "w", "w", "b", "w", "b", "r", "r", "r", "r", "o", "o", "o", "o" };
-  String[] checkR = { "y", "g", "y", "g", "g", "w", "g", "w", "w", "b", "w", "b", "b", "y", "b", "y", "r", "r", "r", "r", "o", "o", "o", "o" };
-  String[] checkU = { "y", "y", "y", "y", "o", "o", "g", "g", "w", "w", "w", "w", "b", "b", "r", "r", "g", "g", "r", "r", "b", "b", "o", "o" };
-  String[] checkD = { "y", "y", "y", "y", "g", "g", "r", "r", "w", "w", "w", "w", "o", "o", "b", "b", "r", "r", "b", "b", "o", "o", "g", "g" };
-  String[] checkHard = { "o", "o", "g", "g", "w", "w", "g", "o", "r", "b", "w", "r", "b", "y", "y", "b", "g", "r", "r", "y", "o", "w", "y", "b" };
+  CubeSolverForTest newTest = new CubeSolverForTest();
+    private int[] check1 = {1, 4, 1, 4, 2, 1, 2, 1, 3, 2, 3, 2, 4, 3, 4, 3, 5, 5, 5, 5, 6, 6, 6, 6};
+    private int[] check2 = {1, 6, 1, 3, 2, 4, 6, 2, 1, 5, 3, 2, 4, 3, 4, 2, 5, 5, 5, 4, 6, 1, 3, 6};
+    private int[] check3 = {1, 3, 4, 4, 5, 6, 4, 1, 6, 5, 2, 5, 6, 1, 2, 5, 6, 3, 3, 1, 3, 2, 2, 4};
+    private int[] check4 = {3, 6, 1, 5, 2, 1, 6, 3, 3, 5, 2, 2, 1, 5, 4, 1, 6, 5, 6, 2, 4, 4, 4, 3};
   
   @Test
   public void solveCheck() {
-    Assert.assertEquals(CubeSolver.getCheck(this.checkB), "B ");
-    Assert.assertEquals(CubeSolver.getCheck(this.checkF), "F' ");
-    Assert.assertEquals(CubeSolver.getCheck(this.checkL), "L' ");
-    Assert.assertEquals(CubeSolver.getCheck(this.checkR), "R' ");
-    Assert.assertEquals(CubeSolver.getCheck(this.checkU), "U' ");
-    Assert.assertEquals(CubeSolver.getCheck(this.checkD), "D' ");
-    
-    Assert.assertEquals(CubeSolver.getCheck(this.checkHard), "F' R' U' F' R F F ");
+    Assert.assertEquals("R ", newTest.getCheck(check1));
+    Assert.assertEquals("U F U' R ", newTest.getCheck(check2));
+    Assert.assertEquals("F' R U' R U' B D' ", newTest.getCheck(check3));
+    Assert.assertEquals("F' F' R' U' F D L' F D  ", newTest.getCheck(check4));
   }
 }
