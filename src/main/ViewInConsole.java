@@ -44,7 +44,7 @@ public class ViewInConsole {
     //blue-4
     //red-5
     //orange-6
-    System.out.println("Водите цифры соответствующие цвету:" +
+    System.out.println("Водите цифры соответствующие govno:" +
             "\nЖёлтый - 1, " +
             "Зелёный - 2, " +
             "Белый - 3, " +
